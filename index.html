@@ -72,7 +72,7 @@ h1{
 }
 .sub{font-size:clamp(18px,2.6vw,26px);font-weight:300;max-width:620px;color:#d2d2d7}
 .cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:38px}
-.btn{padding:12px 28px;border-radius:999px;font-size:17px;font-weight:600;transition:transform .2s ease,background .2s ease}
+.btn{display:inline-block;padding:12px 28px;border-radius:999px;font-size:17px;font-weight:600;transition:transform .2s ease,background .2s ease}
 .btn:active{transform:scale(.97)}
 .btn-primary{background:var(--blue);color:#fff}
 .btn-primary:hover{background:#4aa8ff}
@@ -87,17 +87,36 @@ h1{
 @keyframes rise{to{opacity:1;transform:none}}
 
 /* Sections */
-section{padding:110px 20px}
+section{padding:60px 20px}
 .wrap{max-width:1040px;margin:0 auto}
-h2{font-size:clamp(32px,5.5vw,56px);font-weight:800;line-height:1.3;letter-spacing:-.5px;margin-bottom:18px}
+h2{font-size:clamp(30px,5vw,52px);font-weight:800;line-height:1.3;letter-spacing:-.5px;margin-bottom:18px}
 .lead{color:var(--muted);font-size:clamp(18px,2vw,22px);max-width:640px}
 
-/* Profile – spec sheet */
-.spec{margin-top:56px;border-top:1px solid var(--line)}
-.spec div{display:grid;grid-template-columns:200px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--line)}
-.spec dt{color:var(--muted)}
-.spec dd{font-weight:600;font-size:19px}
-.ltr{direction:ltr;unicode-bidi:embed}
+/* About box */
+.about{
+  position:relative;border-radius:40px;padding:clamp(36px,6vw,72px) clamp(24px,5vw,64px);
+  background:
+    linear-gradient(var(--panel),var(--panel)) padding-box,
+    linear-gradient(135deg,rgba(41,151,255,.7),rgba(191,90,242,.7)) border-box;
+  border:1px solid transparent;
+}
+.about::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(circle at 85% 0%,rgba(41,151,255,.14),transparent 55%);
+}
+.about h2{margin-bottom:16px}
+.about p{font-size:clamp(19px,2.3vw,26px);font-weight:300;line-height:2;max-width:720px;color:#d2d2d7}
+
+/* Channel */
+.channel-box{
+  display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;
+  background:var(--panel);border-radius:40px;padding:clamp(32px,5vw,60px) clamp(24px,5vw,64px);
+}
+.channel-info{display:flex;align-items:center;gap:24px;flex:1 1 380px}
+.channel-info .icon{width:72px;height:72px;border-radius:22px}
+.channel-info .icon svg{width:36px;height:36px}
+.channel-info h2{font-size:clamp(26px,4vw,40px);margin-bottom:6px}
+.channel-info p{color:var(--muted);font-size:clamp(16px,1.8vw,20px)}
 
 /* Contact */
 .contact{background:var(--panel);border-radius:40px;padding:clamp(36px,6vw,80px) clamp(20px,5vw,64px)}
@@ -110,15 +129,15 @@ h2{font-size:clamp(32px,5.5vw,56px);font-weight:800;line-height:1.3;letter-spaci
 .icon{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;flex:none}
 .icon svg{width:26px;height:26px}
 .ig .icon{background:linear-gradient(45deg,#f9a03f,#e1306c 50%,#833ab4)}
-.tg .icon{background:#229ed9}
+.tg .icon,.tgc{background:#229ed9}
 .channel b{display:block;font-size:18px;line-height:1.5}
 .channel span{color:var(--muted);font-size:15px;direction:ltr;display:block;text-align:right}
 
 footer{padding:40px 20px 56px;text-align:center;color:var(--muted);font-size:14px}
 
 @media (max-width:760px){
-  section{padding:80px 20px}
-  .spec div{grid-template-columns:1fr;gap:2px}
+  section{padding:40px 20px}
+  .channel-info{flex-basis:100%}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -132,7 +151,8 @@ footer{padding:40px 20px 56px;text-align:center;color:var(--muted);font-size:14p
 <nav>
   <a class="logo" href="#top">Alimodirrusta</a>
   <div class="nav-links">
-    <a href="#profile">مشخصات</a>
+    <a href="#about">درباره</a>
+    <a href="#channel">کانال</a>
     <a href="#contact">تماس</a>
   </div>
 </nav>
@@ -143,23 +163,37 @@ footer{padding:40px 20px 56px;text-align:center;color:var(--muted);font-size:14p
   <p class="sub">بلاگر تکنولوژی</p>
   <div class="cta">
     <a class="btn btn-primary" href="#contact">همکاری و تبلیغات</a>
-    <a class="btn btn-ghost" href="#profile">مشخصات</a>
+    <a class="btn btn-ghost" href="#channel">کانال تلگرام</a>
   </div>
 </header>
 
-<section id="profile">
+<section id="about">
   <div class="wrap">
-    <h2>مشخصات</h2>
-    <dl class="spec">
-      <div><dt>نام برند</dt><dd class="ltr">Alimodirrusta</dd></div>
-      <div><dt>حوزه</dt><dd>بلاگر تکنولوژی</dd></div>
-      <div><dt>آیدی اینستاگرام</dt><dd class="ltr">@alimodirrusta</dd></div>
-      <div><dt>آیدی تلگرام</dt><dd class="ltr">@alimodir8</dd></div>
-    </dl>
+    <div class="about">
+      <h2>سلام، من علی هستم</h2>
+      <p>بلاگر تکنولوژی و دنبال‌کننده تازه‌ترین ابزارها و اپ‌ها. برای همکاری و تبلیغات می‌توانید از راه‌های ارتباطی همین صفحه پیام بدهید.</p>
+    </div>
   </div>
 </section>
 
-<section id="contact" style="padding-top:20px">
+<section id="channel">
+  <div class="wrap">
+    <div class="channel-box">
+      <div class="channel-info">
+        <div class="icon tgc">
+          <svg viewBox="0 0 24 24" fill="#fff"><path d="M9.8 15.6 9.5 19.8c.4 0 .6-.2.8-.4l2-1.9 4.2 3.1c.8.4 1.3.2 1.5-.7l2.8-13.2c.3-1.1-.4-1.6-1.1-1.3L3.3 11c-1.1.4-1.1 1.1-.2 1.4l4.2 1.3 9.7-6.1c.5-.3.9-.1.5.2l-7.7 7.8Z"/></svg>
+        </div>
+        <div>
+          <h2>کانال تلگرام</h2>
+          <p>ابزارها و اپ‌هایی که معرفی می‌شوند آنجا هستند.</p>
+        </div>
+      </div>
+      <a class="btn btn-primary" href="https://t.me/alimodirrosta_ai" target="_blank" rel="noopener">ورود به کانال</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
   <div class="wrap">
     <div class="contact">
       <h2>جهت همکاری و تبلیغات<br>پیام بدهید</h2>
